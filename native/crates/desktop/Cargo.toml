@@ -1,0 +1,18 @@
+[package]
+name = "standardnotes-rune"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+anyhow = "1"
+rune = { git = "https://github.com/anomalyco/rune", rev = "e970367bd7d2a51e2e7d58e2978ea32eac7780cb", features = ["native-file-dialog"] }
+rune-kit = { git = "https://github.com/anomalyco/rune", rev = "e970367bd7d2a51e2e7d58e2978ea32eac7780cb", features = ["markdown"] }
+serde_json = "1"
+sn-rune-core = { path = "../core" }
+sn-rune-protocol = { path = "../protocol" }
+zeroize = "1.8"
+
+[dev-dependencies]
+tempfile = "3"

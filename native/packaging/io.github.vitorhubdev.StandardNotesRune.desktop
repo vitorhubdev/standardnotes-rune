@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Standard Notes Rune
+Comment=Native notes with an encrypted local vault
+Comment[pt_BR]=Notas nativas com cofre local criptografado
+Exec=standardnotes-rune
+Icon=standardnotes-rune
+Terminal=false
+Categories=Office;Utility;TextEditor;
+StartupNotify=true
+StartupWMClass=io.github.vitorhubdev.StandardNotesRune

@@ -1,0 +1,117 @@
+name: Rune native desktop
+
+on:
+  push:
+    branches: [main, feat/rune-native-desktop]
+    paths: ["native/**", ".github/workflows/rune-native.yml"]
+    tags: ["rune-v*"]
+  pull_request:
+    paths: ["native/**", ".github/workflows/rune-native.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rune-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_BUILD_JOBS: 3
+
+jobs:
+  build:
+    name: Test and package ${{ matrix.platform }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            platform: linux-x86_64
+          - os: windows-2025
+            platform: windows-x86_64
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: native
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          sparse-checkout: native
+          persist-credentials: false
+      - name: Linux development and rendering libraries
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxkbcommon-dev libwayland-dev libxkbcommon-x11-0 mesa-vulkan-drivers xvfb
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.99.1 --profile minimal --component rustfmt --component clippy
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          workspaces: native -> target
+          cache-on-failure: true
+      - name: Formatting
+        run: cargo fmt --all --check
+      - name: Tests including encrypted persistence and UI behavior
+        run: cargo test --workspace --locked
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - name: Build native executable
+        run: cargo build --release --locked -p standardnotes-rune
+      - name: Render isolated demo on Linux
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p test-output
+          ./target/release/standardnotes-rune --scene demo --snap test-output/rune-linux.png --tree test-output/rune-linux.json
+      - name: Render isolated demo on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force test-output | Out-Null
+          $process = Start-Process -FilePath target/release/standardnotes-rune.exe -ArgumentList '--scene','demo','--snap','test-output/rune-windows.png','--tree','test-output/rune-windows.json' -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Render failed: $($process.ExitCode)" }
+          if (!(Test-Path test-output/rune-windows.png)) { throw 'Missing screenshot' }
+      - name: Package Linux tar.gz and deb
+        if: runner.os == 'Linux'
+        run: bash scripts/package-linux.sh
+      - name: Package Windows exe and portable zip
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/package-windows.ps1
+      - name: Upload distributables
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: standardnotes-rune-${{ matrix.platform }}
+          path: native/dist/*
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload rendered verification
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: rune-verification-${{ matrix.platform }}
+          path: native/test-output/*
+          if-no-files-found: ignore
+          retention-days: 14
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/rune-v')
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: standardnotes-rune-*
+          merge-multiple: true
+          path: dist
+      - name: Publish explicitly tagged prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/* --verify-tag --prerelease --title "Standard Notes Rune $RELEASE_TAG" --notes 'Native Rust/Rune preview. Read native/MIGRATION-COVERAGE.md for supported formats and remaining compatibility work. Windows binaries are unsigned.'
