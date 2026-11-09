@@ -58,21 +58,30 @@ jobs:
         run: cargo test --workspace --locked
       - name: Clippy
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
-      - name: Build native executable
+      - name: Build Linux executable
+        if: runner.os == 'Linux'
         run: cargo build --release --locked -p standardnotes-rune
+      - name: Build standalone Windows executable
+        if: runner.os == 'Windows'
+        env:
+          CARGO_TARGET_X86_64_PC_WINDOWS_MSVC_RUSTFLAGS: -C target-feature=+crt-static
+        run: cargo build --release --locked --target x86_64-pc-windows-msvc -p standardnotes-rune
       - name: Render isolated demo on Linux
         if: runner.os == 'Linux'
         run: |
           mkdir -p test-output
-          ./target/release/standardnotes-rune --scene demo --snap test-output/rune-linux.png --tree test-output/rune-linux.json
+          ./target/release/standardnotes-rune --scene demo --script crates/desktop/tests/smoke.json --fps 10 --at 6.0 --snap test-output/rune-linux.png --tree test-output/rune-linux.json
+          python3 scripts/check-smoke.py test-output/rune-linux.json
       - name: Render isolated demo on Windows
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force test-output | Out-Null
-          $process = Start-Process -FilePath target/release/standardnotes-rune.exe -ArgumentList '--scene','demo','--snap','test-output/rune-windows.png','--tree','test-output/rune-windows.json' -Wait -PassThru
+          $process = Start-Process -FilePath target/x86_64-pc-windows-msvc/release/standardnotes-rune.exe -ArgumentList '--scene','demo','--script','crates/desktop/tests/smoke.json','--fps','10','--at','6.0','--snap','test-output/rune-windows.png','--tree','test-output/rune-windows.json' -Wait -PassThru
           if ($process.ExitCode -ne 0) { throw "Render failed: $($process.ExitCode)" }
           if (!(Test-Path test-output/rune-windows.png)) { throw 'Missing screenshot' }
+          python scripts/check-smoke.py test-output/rune-windows.json
+          if ($LASTEXITCODE -ne 0) { throw 'Release interaction smoke failed' }
       - name: Package Linux tar.gz and deb
         if: runner.os == 'Linux'
         run: bash scripts/package-linux.sh

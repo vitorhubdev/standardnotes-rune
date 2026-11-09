@@ -5,7 +5,7 @@ $version = $versionMatch.Matches[0].Groups[1].Value
 if (!$version) { throw 'Workspace version missing' }
 $name = "standardnotes-rune-$version-windows-x86_64"
 $target = if ($env:CARGO_TARGET_DIR) { $env:CARGO_TARGET_DIR } else { 'target' }
-$binary = Join-Path $target 'release/standardnotes-rune.exe'
+$binary = Join-Path $target 'x86_64-pc-windows-msvc/release/standardnotes-rune.exe'
 if (!(Test-Path $binary)) { throw "Executable missing: $binary" }
 New-Item -ItemType Directory -Force "dist/$name" | Out-Null
 Copy-Item $binary "dist/$name/standardnotes-rune.exe"

@@ -22131,7 +22131,7 @@
   ],
   "workspace": {
     "Cargo.lock_sha256": "302da26d5dfd60d051a4d187d85d02694527eccdd874271e38a5452968e6d0c8",
-    "Cargo.toml_sha256": "1ac7f3146cc3c1cf0aa638347cc875475f78938939325ee5fcd3e3c5d026d49f",
+    "Cargo.toml_sha256": "9bc1158e1b79b88c654e666b9871f2de1967dde407a3000f1f4bdcdb4339c31f",
     "repository": "https://github.com/vitorhubdev/standardnotes-rune",
     "repository_text_hashes": "SHA-256 after CRLF-to-LF normalization; crate archives and original license texts are hashed as exact bytes.",
     "rust-toolchain.toml_sha256": "b9c8d2d59f6f46474c0cfa0b8b77bea21d94fc73a30ad93d5bf6385c422197d2",

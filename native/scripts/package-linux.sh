@@ -26,7 +26,8 @@ install -m 644 ../LICENSE dist/deb-root/usr/share/doc/standardnotes-rune/copyrig
 install -m 644 README.md MIGRATION-COVERAGE.md dist/deb-root/usr/share/doc/standardnotes-rune/
 cp -R "dist/$name/third-party" dist/deb-root/usr/share/doc/standardnotes-rune/third-party
 cp "dist/$name/BUILD-INFO.txt" dist/deb-root/usr/share/doc/standardnotes-rune/
-deb_version="${version/-/~}"
+# Escape the replacement tilde: an unescaped ~ expands to the builder's home.
+deb_version="${version/-/\~}"
 cat > dist/deb-root/DEBIAN/control <<EOF
 Package: standardnotes-rune
 Version: $deb_version

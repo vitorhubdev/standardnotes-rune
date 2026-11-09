@@ -84,7 +84,8 @@ Use a toolchain `x86_64-pc-windows-msvc`:
 ```powershell
 cd native
 cargo test --workspace --locked
-cargo build --release --locked -p standardnotes-rune
+$env:CARGO_TARGET_X86_64_PC_WINDOWS_MSVC_RUSTFLAGS = '-C target-feature=+crt-static'
+cargo build --release --locked --target x86_64-pc-windows-msvc -p standardnotes-rune
 ./scripts/package-windows.ps1
 ```
 
