@@ -1,0 +1,77 @@
+{
+  "password": "interop test password 🔐",
+  "master_key": "2271c696a3c986a0e6404ae7f09a10f80318c07f043857b87f17dba7cbde319c",
+  "server_password": "8d42730520dd1f52e1214ec2bca11d868b6c088fe122a0eb0ba3d4ebb9cbb429",
+  "items": [
+    {
+      "uuid": "11111111-1111-4111-8111-111111111111",
+      "content_type": "SN|ItemsKey",
+      "content": {
+        "itemsKey": "abababababababababababababababababababababababababababababababab",
+        "version": "004",
+        "isDefault": true,
+        "creationTimestamp": 1794225600000,
+        "references": [],
+        "appData": {}
+      }
+    },
+    {
+      "uuid": "22222222-2222-4222-8222-222222222222",
+      "content_type": "Note",
+      "content": {
+        "title": "Nota de interoperabilidade",
+        "text": "Olá, Rune. Criptografia real 🔐\nLinha dois.",
+        "noteType": "plain-text",
+        "appData": {
+          "org.standardnotes.sn": {
+            "pinned": true
+          }
+        },
+        "references": [],
+        "custom": {
+          "array": [
+            true,
+            42,
+            "á"
+          ]
+        }
+      },
+      "items_key_id": "11111111-1111-4111-8111-111111111111",
+      "extension_metadata": {
+        "unfamiliar": true
+      }
+    },
+    {
+      "uuid": "33333333-3333-4333-8333-333333333333",
+      "content_type": "Tag",
+      "content": {
+        "title": "Pesquisa",
+        "references": [
+          {
+            "uuid": "22222222-2222-4222-8222-222222222222",
+            "content_type": "Note"
+          }
+        ],
+        "appData": {}
+      },
+      "items_key_id": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "uuid": "44444444-4444-4444-8444-444444444444",
+      "content_type": "SN|Editor",
+      "content": {
+        "name": "Editor desconhecido",
+        "references": [],
+        "appData": {},
+        "opaque": {
+          "version": 9,
+          "payload": [
+            "keep",
+            "everything"
+          ]
+        }
+      },
+      "items_key_id": "11111111-1111-4111-8111-111111111111"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "events": [
+    {"t": 0.1, "type": "tap", "key": "new-note"},
+    {"t": 0.5, "type": "type", "text": "Teste de notas Rune", "every": 0.025},
+    {"t": 1.3, "type": "tap", "key": "note-body/scroll/input"},
+    {"t": 1.6, "type": "type", "text": "Texto com acentuação: ação, coração e informação.", "every": 0.025},
+    {"t": 3.2, "type": "tap", "key": "toggle-pin"},
+    {"t": 3.8, "type": "tap", "key": "theme"},
+    {"t": 6.0, "type": "mark", "name": "end"}
+  ]
+}

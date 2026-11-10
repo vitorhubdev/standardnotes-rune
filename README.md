@@ -1,4 +1,15 @@
-# Standard Notes
+# Standard Notes Rune
+
+Este fork contém a migração desktop nativa para **Rust + Rune**, em [native/](native/).
+A versão atual é uma **prévia experimental**, com builds para Windows x64 e Linux x64.
+Consulte as [instruções de uso e build](native/README.md) e a
+[matriz de compatibilidade](native/MIGRATION-COVERAGE.md) para os recursos já portados
+e as pendências. A migração integral ainda não está concluída.
+
+O aplicativo original abaixo permanece como referência; ele não faz parte do
+executável Rune. Os formatos não suportados são preservados contra edição destrutiva.
+
+## Standard Notes — documentação original
 
 Standard Notes is an end-to-end encrypted note-taking app for digitalists and professionals. Capture your notes, files, and life’s work all in one secure place.
 

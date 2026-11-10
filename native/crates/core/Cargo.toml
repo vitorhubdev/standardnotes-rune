@@ -1,0 +1,23 @@
+[package]
+name = "sn-rune-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+description = "Loss-preserving Standard Notes data model and encrypted native vault"
+
+[dependencies]
+anyhow = "1.0"
+argon2 = { version = "0.6.0", features = ["zeroize"] }
+chacha20poly1305 = { version = "0.11.0", features = ["zeroize"] }
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+fs2 = "0.4.3"
+getrandom = "0.4.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["preserve_order", "arbitrary_precision"] }
+tempfile = "3.27.0"
+uuid = { version = "1", features = ["v4", "serde"] }
+zeroize = "1.8"
+
+[lints]
+workspace = true

@@ -1,0 +1,8 @@
+/target/
+/dist/
+/test-output/
+*.snvault
+*.snvault.*
+*.snrvault
+*.snrvault.*
+*.lockfile

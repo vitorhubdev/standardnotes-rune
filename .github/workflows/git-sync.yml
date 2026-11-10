@@ -10,6 +10,9 @@ on:
 
 jobs:
   git-sync:
+    # This upstream mirror targets Standard Notes' private repository.
+    # It must not run in independent forks.
+    if: github.repository == 'standardnotes/app'
     runs-on: ubuntu-latest
     steps:
       - name: git-sync

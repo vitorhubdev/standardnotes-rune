@@ -1,0 +1,2 @@
+# Preserve original license bytes and deterministic hashes on Windows as well.
+* -text

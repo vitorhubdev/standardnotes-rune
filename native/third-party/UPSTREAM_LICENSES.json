@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "reason": "Original upstream license files omitted by some published Cargo crate archives. Git revisions are verified against .cargo_vcs_info.json of the locked crate.",
+  "files": [
+    {
+      "repository": "https://github.com/AccessKit/accesskit",
+      "git_revision": "f3026222559c7f5f46d8f25cb7404de68eb149f0",
+      "source_path": "LICENSE-MIT",
+      "retrieval_url": "https://raw.githubusercontent.com/AccessKit/accesskit/f3026222559c7f5f46d8f25cb7404de68eb149f0/LICENSE-MIT",
+      "stored_path": "licenses/upstream/AccessKit--accesskit--f3026222559c--LICENSE-MIT",
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "byte_length": 1023
+    },
+    {
+      "repository": "https://github.com/AccessKit/accesskit",
+      "git_revision": "f3026222559c7f5f46d8f25cb7404de68eb149f0",
+      "source_path": "LICENSE-APACHE",
+      "retrieval_url": "https://raw.githubusercontent.com/AccessKit/accesskit/f3026222559c7f5f46d8f25cb7404de68eb149f0/LICENSE-APACHE",
+      "stored_path": "licenses/upstream/AccessKit--accesskit--f3026222559c--LICENSE-APACHE",
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "byte_length": 9723
+    },
+    {
+      "repository": "https://github.com/AccessKit/accesskit",
+      "git_revision": "f3026222559c7f5f46d8f25cb7404de68eb149f0",
+      "source_path": "LICENSE.chromium",
+      "retrieval_url": "https://raw.githubusercontent.com/AccessKit/accesskit/f3026222559c7f5f46d8f25cb7404de68eb149f0/LICENSE.chromium",
+      "stored_path": "licenses/upstream/AccessKit--accesskit--f3026222559c--LICENSE.chromium",
+      "sha256": "845022e0c1db1abb41a6ba4cd3c4b674ec290f3359d9d3c78ae558d4c0ed9308",
+      "byte_length": 1559
+    },
+    {
+      "repository": "https://github.com/aclysma/profiling",
+      "git_revision": "8271551172eb6fa4cba47369aedd93790c623df9",
+      "source_path": "LICENSE-MIT",
+      "retrieval_url": "https://raw.githubusercontent.com/aclysma/profiling/8271551172eb6fa4cba47369aedd93790c623df9/LICENSE-MIT",
+      "stored_path": "licenses/upstream/aclysma--profiling--8271551172eb--LICENSE-MIT",
+      "sha256": "c8167fdeeed46d3f244d3f85c5bf998ce889343691c32be2c61a8bc4b5c08333",
+      "byte_length": 1093
+    },
+    {
+      "repository": "https://github.com/aclysma/profiling",
+      "git_revision": "8271551172eb6fa4cba47369aedd93790c623df9",
+      "source_path": "LICENSE-APACHE",
+      "retrieval_url": "https://raw.githubusercontent.com/aclysma/profiling/8271551172eb6fa4cba47369aedd93790c623df9/LICENSE-APACHE",
+      "stored_path": "licenses/upstream/aclysma--profiling--8271551172eb--LICENSE-APACHE",
+      "sha256": "10d30a673cd5e9349bdc02aeb48f14b3386d27d0da32df8f0a555d4aa16aa551",
+      "byte_length": 10818
+    },
+    {
+      "repository": "https://github.com/gfx-rs/rspirv",
+      "git_revision": "8afc3d0ac8e158128cd1410bb2e4b4c26ab11bb4",
+      "source_path": "LICENSE",
+      "retrieval_url": "https://raw.githubusercontent.com/gfx-rs/rspirv/8afc3d0ac8e158128cd1410bb2e4b4c26ab11bb4/LICENSE",
+      "stored_path": "licenses/upstream/gfx-rs--rspirv--8afc3d0ac8e1--LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "byte_length": 11358
+    },
+    {
+      "repository": "https://github.com/DioxusLabs/taffy",
+      "git_revision": "0064bd54cbe38bf1d8bcd6ec6ab0704d45fb048a",
+      "source_path": "LICENSE",
+      "retrieval_url": "https://raw.githubusercontent.com/DioxusLabs/taffy/0064bd54cbe38bf1d8bcd6ec6ab0704d45fb048a/LICENSE",
+      "stored_path": "licenses/upstream/DioxusLabs--taffy--0064bd54cbe3--LICENSE",
+      "sha256": "f97daf1a0124413dccf399a4e6626b4b74acd05282f80b6d64ac82225650b77a",
+      "byte_length": 1100
+    },
+    {
+      "repository": "https://github.com/bytecodealliance/wasm-tools",
+      "git_revision": "76927bf4bdbddf4b15f835c5eddfffbdfe3bdbd5",
+      "source_path": "LICENSE-MIT",
+      "retrieval_url": "https://raw.githubusercontent.com/bytecodealliance/wasm-tools/76927bf4bdbddf4b15f835c5eddfffbdfe3bdbd5/LICENSE-MIT",
+      "stored_path": "licenses/upstream/bytecodealliance--wasm-tools--76927bf4bdbd--LICENSE-MIT",
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "byte_length": 1023
+    },
+    {
+      "repository": "https://github.com/bytecodealliance/wasm-tools",
+      "git_revision": "76927bf4bdbddf4b15f835c5eddfffbdfe3bdbd5",
+      "source_path": "LICENSE-APACHE",
+      "retrieval_url": "https://raw.githubusercontent.com/bytecodealliance/wasm-tools/76927bf4bdbddf4b15f835c5eddfffbdfe3bdbd5/LICENSE-APACHE",
+      "stored_path": "licenses/upstream/bytecodealliance--wasm-tools--76927bf4bdbd--LICENSE-APACHE",
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "byte_length": 10847
+    },
+    {
+      "repository": "https://github.com/bytecodealliance/wasm-tools",
+      "git_revision": "76927bf4bdbddf4b15f835c5eddfffbdfe3bdbd5",
+      "source_path": "LICENSE-Apache-2.0_WITH_LLVM-exception",
+      "retrieval_url": "https://raw.githubusercontent.com/bytecodealliance/wasm-tools/76927bf4bdbddf4b15f835c5eddfffbdfe3bdbd5/LICENSE-Apache-2.0_WITH_LLVM-exception",
+      "stored_path": "licenses/upstream/bytecodealliance--wasm-tools--76927bf4bdbd--LICENSE-Apache-2.0_WITH_LLVM-exception",
+      "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+      "byte_length": 12243
+    },
+    {
+      "repository": "https://github.com/DoumanAsh/clipboard-win",
+      "git_revision": "ed27008ae5d1f10cfbb266de039f0fb35fd05a56",
+      "source_path": "LICENSE",
+      "retrieval_url": "https://raw.githubusercontent.com/DoumanAsh/clipboard-win/ed27008ae5d1f10cfbb266de039f0fb35fd05a56/LICENSE",
+      "stored_path": "licenses/upstream/DoumanAsh--clipboard-win--ed27008ae5d1--LICENSE",
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+      "byte_length": 1338
+    }
+  ]
+}
