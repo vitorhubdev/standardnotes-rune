@@ -106,12 +106,29 @@ jobs:
           retention-days: 14
 
   release:
-    if: startsWith(github.ref, 'refs/tags/rune-v')
+    # Publish only after both OS builds pass and the preview commit explicitly opts in.
+    if: >-
+      startsWith(github.ref, 'refs/tags/rune-v') ||
+      (github.event_name == 'push' &&
+       github.ref == 'refs/heads/feat/rune-native-desktop' &&
+       contains(github.event.head_commit.message, '[publish-rune]'))
     needs: build
     runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
+      - name: Tag this approved preview build
+        if: github.ref == 'refs/heads/feat/rune-native-desktop'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: rune-v0.1.0-alpha.1
+          TARGET_SHA: ${{ github.sha }}
+        run: |
+          # A new tag is written only after both OS builds passed. Never move it.
+          gh api -X POST "repos/${GH_REPO}/git/refs" \
+            -f "ref=refs/tags/${RELEASE_TAG}" \
+            -f "sha=${TARGET_SHA}"
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           pattern: standardnotes-rune-*
@@ -121,6 +138,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_TAG: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'rune-v0.1.0-alpha.1' }}
         run: |
           gh release create "$RELEASE_TAG" dist/* --verify-tag --prerelease --title "Standard Notes Rune $RELEASE_TAG" --notes 'Native Rust/Rune preview. Read native/MIGRATION-COVERAGE.md for supported formats and remaining compatibility work. Windows binaries are unsigned.'
